@@ -41,7 +41,28 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>debug</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<jvmArguments>
+								-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+							</jvmArguments>
+							<profiles>
+								<!-- active spring boot profile-->
+								<profile>debug</profile> <!-- (2) -->
+							</profiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
